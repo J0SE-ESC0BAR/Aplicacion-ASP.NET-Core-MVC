@@ -87,3 +87,4 @@ D:\JAEM\ESTUDIOS\UTEC\PROG2\P5\AdventureWorksPhotos\obj\Debug\AdventureWorksPhot
 D:\JAEM\ESTUDIOS\UTEC\PROG2\P5\AdventureWorksPhotos\obj\Debug\AdventureWorksPhotos.csproj.CopyComplete
 D:\JAEM\ESTUDIOS\UTEC\PROG2\P5\AdventureWorksPhotos\obj\Debug\AdventureWorksPhotos.dll
 D:\JAEM\ESTUDIOS\UTEC\PROG2\P5\AdventureWorksPhotos\obj\Debug\AdventureWorksPhotos.pdb
+D:\JAEM\ESTUDIOS\UTEC\PROG2\P5\AdventureWorksPhotos\obj\Debug\AdventureWorksPhotos.csproj.AssemblyReference.cache

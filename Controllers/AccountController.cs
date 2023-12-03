@@ -20,6 +20,7 @@ namespace AdventureWorksPhotos.Controllers
     {
         private readonly string _cadena = ConfigurationManager.ConnectionStrings["AdventureWorksPhotosDirect"].ConnectionString;
 
+
         public ActionResult Login()
         {
             return View();
@@ -59,7 +60,9 @@ namespace AdventureWorksPhotos.Controllers
             oUsuario.Contrasena = EncryptPassword(oUsuario.Contrasena);
             if (ValidarUsuario(oUsuario))
             {
-                FormsAuthentication.SetAuthCookie(oUsuario.Email, false);
+
+                // Establecer la cookie de autenticación
+                FormsAuthentication.SetAuthCookie(oUsuario.NombreUsuario, true);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -67,10 +70,12 @@ namespace AdventureWorksPhotos.Controllers
             ViewBag.Mensaje = "Usuario no encontrado";
             return View();
         }
+
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
 
