@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdventureWorksPhotosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comentarios">
+    <Key>
+      <PropertyRef Name="IdComentario" />
+    </Key>
+    <Property Name="IdComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdFoto" Type="Int32" Nullable="false" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="TextoComentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaComentario" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Fotos" Relationship="Self.FK__Comentari__IdFot__3C69FB99" FromRole="Comentarios" ToRole="Fotos" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Comentari__IdUsu__3D5E1FD2" FromRole="Comentarios" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Fotos">
+    <Key>
+      <PropertyRef Name="IdFoto" />
+    </Key>
+    <Property Name="IdFoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RutaArchivo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Visibilidad" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Comentarios" Relationship="Self.FK__Comentari__IdFot__3C69FB99" FromRole="Fotos" ToRole="Comentarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Fotos__IdUsuario__398D8EEE" FromRole="Fotos" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Sesiones">
+    <Key>
+      <PropertyRef Name="IdSesion" />
+    </Key>
+    <Property Name="IdSesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="TokenSesion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Precision="3" />
+    <Property Name="TipoSesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Sesiones__IdUsua__403A8C7D" FromRole="Sesiones" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Comentarios" Relationship="Self.FK__Comentari__IdUsu__3D5E1FD2" FromRole="Usuarios" ToRole="Comentarios" />
+    <NavigationProperty Name="Fotos" Relationship="Self.FK__Fotos__IdUsuario__398D8EEE" FromRole="Usuarios" ToRole="Fotos" />
+    <NavigationProperty Name="Sesiones" Relationship="Self.FK__Sesiones__IdUsua__403A8C7D" FromRole="Usuarios" ToRole="Sesiones" />
+  </EntityType>
+  <Association Name="FK__Comentari__IdFot__3C69FB99">
+    <End Role="Fotos" Type="Self.Fotos" Multiplicity="1" />
+    <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fotos">
+        <PropertyRef Name="IdFoto" />
+      </Principal>
+      <Dependent Role="Comentarios">
+        <PropertyRef Name="IdFoto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comentari__IdUsu__3D5E1FD2">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Comentarios">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Fotos__IdUsuario__398D8EEE">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Fotos" Type="Self.Fotos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Fotos">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sesiones__IdUsua__403A8C7D">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Sesiones" Type="Self.Sesiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Sesiones">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comentarios" EntityType="Self.Comentarios" />
+    <EntitySet Name="Fotos" EntityType="Self.Fotos" />
+    <EntitySet Name="Sesiones" EntityType="Self.Sesiones" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK__Comentari__IdFot__3C69FB99" Association="Self.FK__Comentari__IdFot__3C69FB99">
+      <End Role="Fotos" EntitySet="Fotos" />
+      <End Role="Comentarios" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comentari__IdUsu__3D5E1FD2" Association="Self.FK__Comentari__IdUsu__3D5E1FD2">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Comentarios" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Fotos__IdUsuario__398D8EEE" Association="Self.FK__Fotos__IdUsuario__398D8EEE">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Fotos" EntitySet="Fotos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sesiones__IdUsua__403A8C7D" Association="Self.FK__Sesiones__IdUsua__403A8C7D">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Sesiones" EntitySet="Sesiones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

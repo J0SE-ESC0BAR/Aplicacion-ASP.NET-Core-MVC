@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdventureWorksPhotosModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Comentarios">
+      <EntityTypeMapping TypeName="AdventureWorksPhotosModel.Comentarios">
+        <MappingFragment StoreEntitySet="Comentarios">
+          <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
+          <ScalarProperty Name="IdFoto" ColumnName="IdFoto" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="TextoComentario" ColumnName="TextoComentario" />
+          <ScalarProperty Name="FechaComentario" ColumnName="FechaComentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotos">
+      <EntityTypeMapping TypeName="AdventureWorksPhotosModel.Fotos">
+        <MappingFragment StoreEntitySet="Fotos">
+          <ScalarProperty Name="IdFoto" ColumnName="IdFoto" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="RutaArchivo" ColumnName="RutaArchivo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="Visibilidad" ColumnName="Visibilidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sesiones">
+      <EntityTypeMapping TypeName="AdventureWorksPhotosModel.Sesiones">
+        <MappingFragment StoreEntitySet="Sesiones">
+          <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="TokenSesion" ColumnName="TokenSesion" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="TipoSesion" ColumnName="TipoSesion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="AdventureWorksPhotosModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

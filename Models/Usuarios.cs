@@ -27,6 +27,7 @@ namespace AdventureWorksPhotos.Models
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contrasena { get; set; }
+        public string ConfirmarContrasena { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public string Rol { get; set; }
         public bool Estado { get; set; }

@@ -133,32 +133,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AvenWorksPhoto.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvenWorksPhoto.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvenWorksPhoto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvenWorksPhoto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvenWorksPhoto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvenWorksPhoto.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Comentarios.cs">
-      <DependentUpon>EntityAWP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityAWP.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityAWP.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityAWP.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityAWP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityAWP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityAWP.edmx</DependentUpon>
+      <DependentUpon>AvenWorksPhoto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fotos.cs">
-      <DependentUpon>EntityAWP.tt</DependentUpon>
+      <DependentUpon>AvenWorksPhoto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sesiones.cs">
-      <DependentUpon>EntityAWP.tt</DependentUpon>
+      <DependentUpon>AvenWorksPhoto.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.cs">
-      <DependentUpon>EntityAWP.tt</DependentUpon>
+      <DependentUpon>AvenWorksPhoto.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -171,24 +171,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\EntityAWP.Context.tt">
+    <Content Include="Models\AvenWorksPhoto.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityAWP.Context.cs</LastGenOutput>
-      <DependentUpon>EntityAWP.edmx</DependentUpon>
+      <DependentUpon>AvenWorksPhoto.edmx</DependentUpon>
+      <LastGenOutput>AvenWorksPhoto.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\EntityAWP.tt">
+    <Content Include="Models\AvenWorksPhoto.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityAWP.edmx</DependentUpon>
-      <LastGenOutput>EntityAWP.cs</LastGenOutput>
+      <DependentUpon>AvenWorksPhoto.edmx</DependentUpon>
+      <LastGenOutput>AvenWorksPhoto.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\EntityAWP.edmx">
+    <EntityDeploy Include="Models\AvenWorksPhoto.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityAWP.Designer.cs</LastGenOutput>
+      <LastGenOutput>AvenWorksPhoto.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\EntityAWP.edmx.diagram">
-      <DependentUpon>EntityAWP.edmx</DependentUpon>
+    <Content Include="Models\AvenWorksPhoto.edmx.diagram">
+      <DependentUpon>AvenWorksPhoto.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -228,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AdventureWorksPhotosEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comentarios" EntityType="Self.Comentarios" />
           <EntitySet Name="Fotos" EntityType="Self.Fotos" />
           <EntitySet Name="Sesiones" EntityType="Self.Sesiones" />
@@ -255,7 +255,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AdventureWorksPhotosModelStoreContainer" CdmEntityContainer="AdventureWorksPhotosEntities">
+        <EntityContainerMapping StorageEntityContainer="AdventureWorksPhotosModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Comentarios">
             <EntityTypeMapping TypeName="AdventureWorksPhotosModel.Comentarios">
               <MappingFragment StoreEntitySet="Comentarios">

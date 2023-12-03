@@ -13,10 +13,10 @@ namespace AdventureWorksPhotos.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AdventureWorksPhotosEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public AdventureWorksPhotosEntities()
-            : base("name=AdventureWorksPhotosEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
