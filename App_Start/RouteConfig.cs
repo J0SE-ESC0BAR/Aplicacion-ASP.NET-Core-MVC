@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Proyecto_Photos_Adventure_Works
+namespace AdventureWorksPhotos
 {
     public class RouteConfig
     {

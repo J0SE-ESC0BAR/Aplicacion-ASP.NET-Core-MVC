@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Proyecto_Photos_Adventure_Works.Controllers
+namespace AdventureWorksPhotos.Controllers
 {
     public class HomeController : Controller
     {

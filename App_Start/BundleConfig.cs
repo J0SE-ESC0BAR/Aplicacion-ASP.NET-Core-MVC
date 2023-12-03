@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Proyecto_Photos_Adventure_Works
+namespace AdventureWorksPhotos
 {
     public class BundleConfig
     {

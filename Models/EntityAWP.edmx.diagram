@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd8f5bb1d01b47f0a664836766873653" Name="Diagram1">
+        <EntityTypeShape EntityType="AdventureWorksPhotosModel.Comentarios" Width="1.5" PointX="4.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdventureWorksPhotosModel.Fotos" Width="1.5" PointX="7" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdventureWorksPhotosModel.Sesiones" Width="1.5" PointX="2" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdventureWorksPhotosModel.Usuarios" Width="1.5" PointX="1.5" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="AdventureWorksPhotosModel.FK__Comentari__IdFot__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="AdventureWorksPhotosModel.FK__Comentari__IdUsu__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="AdventureWorksPhotosModel.FK__Fotos__IdUsuario__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="AdventureWorksPhotosModel.FK__Sesiones__IdUsua__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
