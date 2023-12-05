@@ -1,52 +1,99 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Aventuras en el trabajo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Galería", "Index", "Fotos")</li>
-                    <li>@Html.ActionLink("Agregar foto", "Create", "Fotos")</li>
-                    <li>@Html.ActionLink("Presentación", "Presentacion", "Home")</li>
-                    <li>@Html.ActionLink("Acerca", "About", "Home")</li>
-                    @if (!Request.IsAuthenticated)
+            <!-- Logo o enlace de la marca -->
+            @Html.ActionLink("Aventuras en el trabajo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <!-- Botón de hamburguesa para pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Enlaces de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Galería", "Index", "Fotos", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Agregar foto", "Create", "Fotos", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Presentación", "Presentacion", "Fotos", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Acerca", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+
+                    @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account")</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name
+                                
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Account")</li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Iniciar Sesión", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+                        </li>
                     }
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
     </div>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Universidad Tecnológica de El Salvador</h5>
+                    <p>Proyecto de Programación 2</p>
+                </div>
 
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Equipo de Trabajo</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>José Alfonso Escobar Mejía - 2931882022</li>
+                        <li>Raul Alejandro Ascencio Trejo - 2941482015</li>
+                        <li>Erick Gerardo Fernández Rodríguez - 29-1278-2022</li>
+                        <li>Raúl Alejandro Morales Landaverde - 29-1857-2022</li>
+                        <li>José Raul Artiga Gutiérrez - 2914522022</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            &copy; @DateTime.Now.Year - Mi aplicación ASP.NET
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-{version}.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <!-- Bootstrap Bundle JS CDN (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

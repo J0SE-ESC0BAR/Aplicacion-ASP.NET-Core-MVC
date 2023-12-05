@@ -1,0 +1,16 @@
+﻿.foto-container {
+    border: 2px solid black; /* Contorno negro */
+    margin: 2px; /* Espacio alrededor de cada foto */
+    padding: 10px; /* Espacio dentro del contorno */
+    display: inline-block; /* Hace que los elementos se muestren en línea */
+    width: 300px; /* Ancho fijo del contenedor */
+    height: 400px; /* Altura fija del contenedor */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+    .foto-container img {
+        width: 100%; /* Hace que la imagen se ajuste al ancho del contenedor */
+        height: 250px; /* Altura fija para la imagen */
+        object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+        display: block; /* Asegura que no haya margen extra alrededor de la imagen */
+    }

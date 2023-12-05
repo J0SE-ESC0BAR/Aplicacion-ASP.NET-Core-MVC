@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Presentacion";
+    <style>
+        body, html {
+            background-color: black; /* Fondo de la página en negro */
+            
+        }
+        h2{
+            color:azure;
+        }
+        .carousel-item img {
+            height: 500px; /* Altura fija para las imágenes */
+            width: 100%; /* Asegura que la imagen ocupe el 100% del ancho */
+            object-fit: cover; /* Asegura que la imagen cubra el espacio disponible sin deformarse */
+        }
+
+        .carousel {
+            height: 100%;
+            width:100%;
+        }
+
+        .carousel-inner {
+            height: 100%;
+        }
+    </style>
+}
+
+<h2>Presentacion</h2>
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @{
+            bool isFirst = true;
+            foreach (var foto in Model)
+            {
+                <div class="carousel-item @(isFirst ? "active" : "")">
+                    <img src="@Url.Action("GetImage", new { id = foto.IdFoto })"  alt="@foto.Titulo">
+                </div>
+                isFirst = false;
+            }
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

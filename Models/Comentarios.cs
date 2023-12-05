@@ -21,5 +21,6 @@ namespace AdventureWorksPhotos.Models
         public System.DateTime FechaComentario { get; set; }
     
         public virtual Fotos Fotos { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

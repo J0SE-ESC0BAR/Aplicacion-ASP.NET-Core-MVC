@@ -1,22 +1,26 @@
 ﻿@model AdventureWorksPhotos.Models.Fotos
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
+    string imageBase64 = Convert.ToBase64String(Model.RutaArchivo);
+    string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64);
+    int? currentUserId = Session["IdUsuario"] as int?;
+    string currentUserRole = Session["RolUsuario"] as string;
+
+    <style>
+        .form-control {
+            margin: 0;
+        }
+    </style>
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>Fotos</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdUsuario)
-        </dd>
+        <!-- Campo IdUsuario oculto, si es necesario -->
+        @Html.HiddenFor(model => model.IdUsuario)
 
         <dt>
             @Html.DisplayNameFor(model => model.Titulo)
@@ -35,11 +39,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RutaArchivo)
+            <h3>Imagen</h3>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RutaArchivo)
+            <img src="@imageDataURL" alt="Foto" style="max-width: 400px; max-height: 500px;" />
         </dd>
 
         <dt>
@@ -49,18 +53,56 @@
         <dd>
             @Html.DisplayFor(model => model.FechaCreacion)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Visibilidad)
+            Autor:
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Visibilidad)
+            @Model.Usuarios.NombreUsuario
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdFoto }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- Verificar si el usuario actual es el autor de la foto -->
+@if ((currentUserId.HasValue && currentUserId.Value == Model.IdUsuario) || currentUserRole == "Administrador")
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.IdFoto }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = Model.IdFoto })
+        @Html.ActionLink("Regresar a Galeria", "Index")
+    </p>
+}
+else
+{
+    <p>@Html.ActionLink("Regresar a Galeria", "Index")</p>
+}
+<!-- Mostrar Comentarios Existentes -->
+<div>
+    <h3>Comentarios</h3>
+    @foreach (var comentario in Model.Comentarios)
+    {
+        <div class="comentario-container">
+            <p class="comentario-texto">
+                @comentario.Usuarios.NombreUsuario: @comentario.TextoComentario - <small>@comentario.FechaComentario.ToShortDateString()</small>
+            </p>
+            @if (Session["IdUsuario"] is int userId && userId == comentario.IdUsuario)
+            {
+                using (Html.BeginForm("Delete", "Comentarios", new { id = comentario.IdComentario }, FormMethod.Post, new { @class = "form-inline" }))
+                {
+                    <button type="submit" class="button-link">Borrar</button>
+                }
+            }
+        </div>
+    }
+</div>
+
+@if (currentUserId.HasValue)
+{
+    @Html.BeginForm("AddComment", "Comentarios", FormMethod.Post)
+    {
+        @Html.HiddenFor(model => model.IdFoto)
+        <div>
+            @Html.TextArea("TextoComentario", new { @class = "form-control", @placeholder = "Escribe tu comentario aquí..." })
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir Comentario</button>
+    }
+}

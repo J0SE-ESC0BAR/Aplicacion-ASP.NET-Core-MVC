@@ -1,31 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Inicio";
+    ViewBag.Title = "Inicio - Adventure Works";
 }
 
+<!-- Jumbotron para destacar la aplicación -->
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <h1>Adventure Works - Comparte tus Aventuras</h1>
+    @if (Request.IsAuthenticated)
+    {
+        <h2>Bienvenido @User.Identity.Name</h2>
+    }
+        <p class="lead">Únete a la comunidad de Adventure Works para compartir y descubrir fotos de aventuras increíbles.</p>
+        <p><a href="@Url.Action("Index", "Fotos")" class="btn btn-primary btn-lg">Explora la Galería &raquo;</a></p>
+    </div>
 
+<!-- Sección de características -->
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Comparte tus Momentos</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Carga y comparte tus fotos de aventuras al instante. Añade títulos, descripciones y más a tus fotos.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Create", "Fotos")">Compartir Ahora &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Descubre Nuevas Aventuras</h2>
+        <p>Explora la colección de fotografías de aventuras de otros usuarios y encuentra inspiración para tus próximos viajes.</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Fotos")">Ver Galería &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Únete a la Comunidad</h2>
+        <p>Participa en nuestra comunidad, comenta y comparte tus experiencias sobre las fotos de aventuras.</p>
+        <p><a class="btn btn-default" href="@Url.Action("Register", "Account")">Regístrate Ahora &raquo;</a></p>
     </div>
 </div>

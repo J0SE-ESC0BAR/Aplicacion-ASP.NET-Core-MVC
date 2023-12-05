@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Linq;
-using System.Web.Mvc;
 using System.Web.Security;
 using AdventureWorksPhotos.Models;
 using System.Text;
@@ -18,8 +16,7 @@ namespace AdventureWorksPhotos.Controllers
 
     public class AccountController : Controller
     {
-        private readonly string _cadena = ConfigurationManager.ConnectionStrings["AdventureWorksPhotosDirect"].ConnectionString;
-
+        private AWPEntities db = new AWPEntities();
 
         public ActionResult Login()
         {
@@ -34,7 +31,7 @@ namespace AdventureWorksPhotos.Controllers
         [HttpPost]
         public ActionResult Register(Usuarios oUsuario)
         {
-            if (oUsuario.Contrasena != oUsuario.ConfirmarContrasena)
+            if (oUsuario.Contrasena != oUsuario.confirmarContrasena)
             {
                 ViewBag.Mensaje = "Las contraseñas no coinciden";
                 return View();
@@ -58,19 +55,14 @@ namespace AdventureWorksPhotos.Controllers
         public ActionResult Login(Usuarios oUsuario)
         {
             oUsuario.Contrasena = EncryptPassword(oUsuario.Contrasena);
-            if (ValidarUsuario(oUsuario))
+            if(ValidarUsuario(oUsuario))
             {
-
-                // Establecer la cookie de autenticación
-                FormsAuthentication.SetAuthCookie(oUsuario.NombreUsuario, true);
-
                 return RedirectToAction("Index", "Home");
             }
 
             ViewBag.Mensaje = "Usuario no encontrado";
             return View();
         }
-
 
         public ActionResult Logout()
         {
@@ -100,52 +92,33 @@ namespace AdventureWorksPhotos.Controllers
 
         private (bool registrado, string mensaje) RegistrarUsuario(Usuarios oUsuario)
         {
-            using (var cn = new SqlConnection(_cadena))
+            try
             {
-                var cmd = new SqlCommand("sp_RegistrarUsuario", cn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                cmd.Parameters.AddWithValue("@NombreUsuario", oUsuario.NombreUsuario);
-                cmd.Parameters.AddWithValue("@Apellido", oUsuario.Apellido);
-                cmd.Parameters.AddWithValue("@Email", oUsuario.Email);
-                cmd.Parameters.AddWithValue("@Contrasena", oUsuario.Contrasena);
-                cmd.Parameters.AddWithValue("@Rol", oUsuario.Rol);
-                cmd.Parameters.AddWithValue("@Estado", oUsuario.Estado);
-
-                cmd.Parameters.Add("@Registrar", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                return (Convert.ToBoolean(cmd.Parameters["@Registrar"].Value),
-                        cmd.Parameters["@Mensaje"].Value.ToString());
+                oUsuario.FechaRegistro = DateTime.Now;
+                db.Usuarios.Add(oUsuario);
+                db.SaveChanges();
+                return (true, "Usuario registrado con éxito");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error al registrar: " + ex.Message);
             }
         }
 
         private bool ValidarUsuario(Usuarios oUsuario)
         {
-            using (var cn = new SqlConnection(_cadena))
+            var usuario = db.Usuarios.FirstOrDefault(u => u.Email == oUsuario.Email && u.Contrasena == oUsuario.Contrasena);
+            if (usuario != null)
             {
-                var cmd = new SqlCommand("sp_ValidarUsuario", cn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.AddWithValue("@Email", oUsuario.Email);
-                cmd.Parameters.AddWithValue("@Contrasena", oUsuario.Contrasena);
+                oUsuario.IdUsuario = usuario.IdUsuario;
+                oUsuario.NombreUsuario = usuario.NombreUsuario;
 
-                cn.Open();
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        oUsuario.IdUsuario = Convert.ToInt32(reader["IdUsuario"]);
-                        return true;
-                    }
-                }
+                // Aquí es donde debes establecer la cookie con el nombre de usuario en lugar del ID.
+                FormsAuthentication.SetAuthCookie(oUsuario.NombreUsuario, true);
+                Session["IdUsuario"] = usuario.IdUsuario;
+                Session["RolUsuario"] = usuario.Rol;
+                return true;
             }
-
             return false;
         }
     }

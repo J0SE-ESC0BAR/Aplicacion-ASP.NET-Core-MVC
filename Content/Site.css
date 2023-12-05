@@ -1,12 +1,9 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,3 +19,65 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/*Estilos de login*/
+
+.gradient-custom {
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+}
+
+.card-custom {
+    background-color: rgba(0, 0, 0, 0.7); /* Color de fondo semitransparente */
+    color: white; /* Color de texto */
+    border-radius: 1rem; /* Bordes redondeados */
+}
+
+.btn-custom {
+    border: 1px solid white; /* Borde del botón */
+    color: white; /* Color de texto del botón */
+}
+
+.btn-custom:hover {
+        background-color: white; /* Color de fondo al pasar el ratón */
+        color: black; /* Color de texto al pasar el ratón */
+}
+
+.form-control {
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-select {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.comentario-container {
+    border: solid 1px black;
+    margin: 5px;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comentario-texto {
+    margin: 0; /* elimina el margen por defecto de <p> */
+}
+
+.button-link {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-family: arial, sans-serif;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+    .button-link:hover {
+        text-decoration: none;
+    }
